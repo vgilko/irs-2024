@@ -1,4 +1,6 @@
+import nltk
 import razdel
+from pymorphy3 import MorphAnalyzer
 from pymystem3 import Mystem
 
 
@@ -48,6 +50,23 @@ def tokenize():
     dump_data('tokens_mystem.txt', dump_res_mystem)
 
 
+def lemmatize():
+    data = read_data('data/tokenization.txt')
+
+    mystem = Mystem()
+
+    mystem_lemmatize = mystem.lemmatize(data)
+
+    print(mystem_lemmatize, sep='\n')
+
+    morph_analyzer = MorphAnalyzer()
+    tokenized_data = nltk.word_tokenize(data)
+    pymorphyResult = [morph_analyzer.parse(word)[0].normal_form for word in tokenized_data]
+    print(pymorphyResult)
+
+
 if __name__ == '__main__':
     # break_sentinize()
-    tokenize()
+    # tokenize()
+    nltk.download('punkt')
+    lemmatize()

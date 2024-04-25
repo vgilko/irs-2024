@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 razdel = "*"
 pymystem3 = "*"
+pymorphy3 = "*"
+nltk = "*"
 
 [dev-packages]
 
